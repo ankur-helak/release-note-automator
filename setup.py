@@ -3,33 +3,34 @@ from setuptools import setup, find_packages
 setup(
     name="release-note-automator",
     version="0.1.0",
-    description="Generate, summarize, format, and post release notes from Azure DevOps repos using Gemini",
-    long_description=open("README.md").read(),
-    long_description_content_type="text/markdown",
     author="Ankur Helak",
     author_email="ankurhelak@gmail.com",
-    url="https://github.com/ankurhelak/release-note-automator",  # update this if hosted elsewhere
+    description="A CLI tool to automate fetching, cleaning, summarizing, and posting release notes from Azure DevOps.",
+    long_description=open("README.md").read() if os.path.exists("README.md") else "",
+    long_description_content_type="text/markdown",
+    url="https://github.com/ankur-helak/release-note-automator",
+    project_urls={
+        "Bug Tracker": "https://github.com/ankur-helak/release-note-automator/issues",
+    },
     packages=find_packages(),
-    include_package_data=True,
     install_requires=[
         "requests",
         "python-dotenv",
         "questionary",
-        "google-generativeai",
-        "wcwidth"
+        "wcwidth",
+        "setuptools",
     ],
     entry_points={
         "console_scripts": [
-            "rlauto=release_note_automator.cli:main"
+            "rlauto=rlauto.cli:main"
         ]
     },
     classifiers=[
-        "Development Status :: 4 - Beta",
-        "Intended Audience :: Developers",
-        "Topic :: Software Development :: Build Tools",
-        "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
-        "Operating System :: OS Independent"
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
     ],
-    python_requires=">=3.7"
+    python_requires='>=3.8',
+    include_package_data=True,
+    zip_safe=False,
 )
