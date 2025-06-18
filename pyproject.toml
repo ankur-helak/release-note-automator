@@ -32,3 +32,4 @@ Issues = "https://github.com/ankur-helak/release-note-automator/issues"
 
 [project.scripts]
 rlauto = "rlauto.cli:main"
+release-note-automator = "rlauto.cli:main"
