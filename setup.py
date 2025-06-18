@@ -2,7 +2,7 @@ from setuptools import setup, find_packages, os
 
 setup(
     name="release-note-automator",
-    version="0.1.0",
+    version="0.1.3",
     author="Ankur Helak",
     author_email="ankurhelak@gmail.com",
     description="A CLI tool to automate fetching, cleaning, summarizing, and posting release notes from Azure DevOps.",
