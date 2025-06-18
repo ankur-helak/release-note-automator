@@ -98,18 +98,22 @@ def main():
     # Run pipeline
     print("\n🚀 Running release note pipeline …\n")
     scripts = [
-        "multi_commit_fetcher.py",
-        "multi_commit_cleaner.py",
-        "multi_commit_chunker.py",
-        "multi_commit_summarizer.py",
-        "multi_release_formatter_llm.py"
+    "multi_commit_fetcher.py",
+    "multi_commit_cleaner.py",
+    "multi_commit_chunker.py",
+    "multi_commit_summarizer.py",
+    "multi_release_formatter_llm.py"
     ]
     for script in scripts:
-        print(f"▶️ Running: {script}")
-        result = subprocess.run(["python3", script])
+        script_path = Path(__file__).parent / script  # fallback in case relative path
+        if not script_path.exists():
+            script_path = Path(__file__).parent / "rlauto" / script
+        print(f"▶️ Running: {script_path}")
+        result = subprocess.run(["python3", str(script_path)])
         if result.returncode != 0:
             print(f"❌ Error running {script}. Halting.")
             exit(1)
+
 
     # Post to Slack
     notes_dir = Path("release_notes")
@@ -121,7 +125,7 @@ def main():
     if questionary.confirm("📣 Do you want to post the release notes to Slack?").ask():
         slack_url = os.getenv("SLACK_WEBHOOK_URL") or questionary.text("🌐 Enter Slack Webhook URL:").ask()
         set_key(str(env_file), "SLACK_WEBHOOK_URL", slack_url)
-        result = subprocess.run(["python3", "multi_post_release_notes_to_slack.py"])
+        result = subprocess.run(["python3", "rlauto/multi_post_release_notes_to_slack.py"])
         if result.returncode != 0:
             print("❌ Error posting to Slack.")
         else:
