@@ -1,0 +1,10 @@
+__pycache__/
+.env
+*.md
+*.json
+release_notes/
+chunks/
+summaries/
+commits/
+cleaned_commits/
+repo_config.json
