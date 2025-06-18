@@ -10,6 +10,11 @@ import os
 import re
 import json
 from pathlib import Path
+from dotenv import load_dotenv
+
+if not load_dotenv():
+    from pathlib import Path
+    load_dotenv(dotenv_path=Path.home() / ".env")
 
 RAW_DIR = Path("commits")
 CLEAN_DIR = Path("cleaned_commits")
