@@ -8,3 +8,7 @@ summaries/
 commits/
 cleaned_commits/
 repo_config.json
+# Build outputs
+dist/
+*.egg-info/
+
