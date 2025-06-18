@@ -6,6 +6,7 @@ import os, json, requests, subprocess
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from dotenv import set_key, load_dotenv
+from dateutil.parser import isoparse
 
 try:
     import questionary
@@ -88,7 +89,7 @@ def main():
             "to_commit_date": now.isoformat()
         }
 
-        from_dt = datetime.fromisoformat(from_commit_date).strftime("%d %b %Y (%A)")
+        from_dt = isoparse(from_commit_date).strftime("%d %b %Y (%A)")
         print(f"✅ {name} → SHA: {found_commit['commitId'][:7]} (starting from: {from_dt})")
 
     Path("repo_config.json").write_text(json.dumps(config, indent=2))

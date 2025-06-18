@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "release-note-automator"
-version = "0.1.0"
+version = "0.1.2"
 description = "A CLI tool to automate fetching, cleaning, summarizing, and posting release notes from Azure DevOps."
 readme = "README.md"
 requires-python = ">=3.8"
